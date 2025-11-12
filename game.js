@@ -205,8 +205,19 @@ function showGameOver() {
     isNewRecord = saveHighScore(score);
 
     // Update high score display
-    if (highScoreDisplay) {
-        highScoreDisplay.textContent = highScore;
+    const highScoreContainer = document.querySelector('.high-score-container');
+    if (highScore > 0) {
+        if (highScoreDisplay) {
+            highScoreDisplay.textContent = highScore;
+        }
+        if (highScoreContainer) {
+            highScoreContainer.classList.remove('hidden');
+        }
+    } else {
+        // Hide the container if there's no personal best yet
+        if (highScoreContainer) {
+            highScoreContainer.classList.add('hidden');
+        }
     }
 
     // Show/hide new record message - only show if truly a NEW record
