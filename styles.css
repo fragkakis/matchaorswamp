@@ -1,0 +1,474 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+@media (min-width: 768px) {
+    body {
+        padding: 20px;
+    }
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+}
+
+.screen {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    .screen {
+        border-radius: 20px;
+        padding: 40px;
+    }
+}
+
+.screen.hidden {
+    display: none;
+}
+
+.hidden {
+    display: none;
+}
+
+h1 {
+    font-size: clamp(1.75rem, 5vw, 3rem);
+    color: #2d3748;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    line-height: 1.2;
+}
+
+@media (min-width: 768px) {
+    h1 {
+        margin-bottom: 20px;
+    }
+}
+
+.subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    color: #4a5568;
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+@media (min-width: 768px) {
+    .subtitle {
+        margin-bottom: 20px;
+    }
+}
+
+.instructions {
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    color: #718096;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+    .instructions {
+        margin-bottom: 30px;
+    }
+}
+
+.btn {
+    padding: 14px 30px;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    min-height: 48px;
+    min-width: 120px;
+    touch-action: manipulation;
+}
+
+@media (min-width: 768px) {
+    .btn {
+        padding: 15px 40px;
+    }
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+@media (hover: none) {
+    .btn-primary:hover {
+        transform: none;
+    }
+}
+
+/* Game Screen */
+.score-display {
+    margin-bottom: 20px;
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    color: #2d3748;
+    font-weight: bold;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+@media (min-width: 768px) {
+    .score-display {
+        margin-bottom: 30px;
+    }
+}
+
+#score {
+    color: #667eea;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+}
+
+.image-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+@media (min-width: 768px) {
+    .image-container {
+        gap: 30px;
+    }
+}
+
+.image-option {
+    flex: 1;
+    min-width: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .image-option {
+        min-width: 300px;
+    }
+}
+
+.image-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.image-wrapper:active {
+    transform: scale(0.98);
+}
+
+.image-option img {
+    width: 100%;
+    max-width: 400px;
+    height: clamp(250px, 50vw, 400px);
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 3px solid transparent;
+}
+
+@media (min-width: 768px) {
+    .image-option img {
+        border-radius: 15px;
+    }
+}
+
+@media (hover: hover) {
+    .image-option img:hover {
+        transform: scale(1.05);
+        box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+        border-color: rgba(102, 126, 234, 0.5);
+    }
+}
+
+.image-option img:active {
+    transform: scale(0.98);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Tap indicator for mobile */
+.tap-indicator {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(102, 126, 234, 0.95);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    pointer-events: none;
+    opacity: 0;
+    animation: pulse 2s ease-in-out infinite;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Show tap indicator on mobile/touch devices */
+@media (hover: none) {
+    .tap-indicator {
+        opacity: 1;
+    }
+}
+
+/* Hide tap indicator on desktop */
+@media (hover: hover) {
+    .tap-indicator {
+        display: none;
+    }
+}
+
+/* Pulse animation for tap indicator */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.8;
+        transform: translateX(-50%) scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1.05);
+    }
+}
+
+
+.vs-divider {
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    font-weight: bold;
+    color: #667eea;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+@media (min-width: 768px) {
+    .vs-divider {
+        padding: 20px;
+    }
+}
+
+/* High Score Display on Start Screen */
+.high-score-display {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    color: #667eea;
+    font-weight: bold;
+    margin-bottom: 20px;
+    padding: 12px 24px;
+    background: rgba(102, 126, 234, 0.1);
+    border-radius: 25px;
+    display: inline-block;
+}
+
+/* Game Over Screen */
+.new-record-message {
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    color: #f6ad55;
+    font-weight: bold;
+    margin-bottom: 20px;
+    padding: 15px 30px;
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    border-radius: 15px;
+    display: inline-block;
+    animation: celebrate 0.6s ease-in-out;
+    box-shadow: 0 8px 20px rgba(246, 173, 85, 0.3);
+}
+
+.trophy {
+    font-size: 1.5em;
+    display: inline-block;
+    animation: bounce 0.5s infinite alternate;
+}
+
+@keyframes celebrate {
+    0% {
+        transform: scale(0.8) rotate(-5deg);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.1) rotate(5deg);
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+@keyframes bounce {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-5px);
+    }
+}
+
+.result-message {
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    color: #2d3748;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+@media (min-width: 768px) {
+    .result-message {
+        margin-bottom: 30px;
+    }
+}
+
+#final-score {
+    color: #667eea;
+    font-size: clamp(2rem, 5vw, 2.5rem);
+    font-weight: bold;
+}
+
+.high-score-container {
+    margin: 20px 0;
+}
+
+.high-score-label {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    color: #4a5568;
+    font-weight: bold;
+}
+
+#high-score {
+    color: #667eea;
+    font-size: clamp(1.3rem, 3vw, 1.5rem);
+}
+
+.reveal-container {
+    margin: 20px 0;
+    padding: 15px;
+    background: #f7fafc;
+    border-radius: 10px;
+    border-left: 4px solid #fc8181;
+}
+
+@media (min-width: 768px) {
+    .reveal-container {
+        margin: 30px 0;
+        padding: 20px;
+    }
+}
+
+.reveal-text {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    color: #2d3748;
+    line-height: 1.5;
+}
+
+#correct-position {
+    color: #e53e3e;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Mobile-specific styles */
+@media (max-width: 767px) {
+    .image-container {
+        flex-direction: column;
+    }
+
+    .vs-divider {
+        transform: rotate(90deg);
+        margin: 5px 0;
+    }
+
+    .image-option {
+        width: 100%;
+        max-width: 100%;
+        min-width: unset;
+    }
+
+    .image-option img {
+        max-width: 100%;
+    }
+}
+
+/* Small phones */
+@media (max-width: 375px) {
+    .screen {
+        padding: 15px;
+    }
+
+    .btn {
+        font-size: 0.9rem;
+        padding: 12px 20px;
+    }
+
+    .select-btn {
+        font-size: 0.9rem;
+        padding: 10px 20px;
+    }
+}
+
+/* Tablet and larger */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .image-option img {
+        max-width: 350px;
+        height: 350px;
+    }
+}
+
+/* Animation for correct/wrong feedback */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+.wrong-choice {
+    animation: shake 0.5s;
+}
+
+.correct-choice img {
+    border: 5px solid #48bb78;
+}
+
+.wrong-choice img {
+    border: 5px solid #fc8181;
+}

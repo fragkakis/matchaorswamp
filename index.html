@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="theme-color" content="#667eea">
+    <meta name="description" content="Can you tell the difference between matcha drinks and swamps? Test your skills in this fun game!">
+    <title>Matcha or Swamp?</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Start Screen -->
+        <div id="start-screen" class="screen">
+            <h1>Matcha or Swamp?</h1>
+            <p class="subtitle">Can you tell the difference between a delicious matcha drink and a murky swamp?</p>
+            <p class="instructions">Tap or click the image you think is matcha. One wrong choice and it's game over!</p>
+            <div id="start-high-score" class="high-score-display hidden"></div>
+            <button id="start-button" class="btn btn-primary">Start Game</button>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="game-screen" class="screen hidden">
+            <div class="score-display">
+                <p>Correct Selections: <span id="score">0</span></p>
+            </div>
+
+            <div class="image-container">
+                <div class="image-option" id="left-option">
+                    <div class="image-wrapper">
+                        <img id="left-image" src="" alt="Option 1" title="Tap to select this image">
+                        <div class="tap-indicator">Tap to Select</div>
+                    </div>
+                </div>
+
+                <div class="vs-divider">
+                    <span>VS</span>
+                </div>
+
+                <div class="image-option" id="right-option">
+                    <div class="image-wrapper">
+                        <img id="right-image" src="" alt="Option 2" title="Tap to select this image">
+                        <div class="tap-indicator">Tap to Select</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Over Screen -->
+        <div id="gameover-screen" class="screen hidden">
+            <h1>Game Over!</h1>
+            <div id="new-record-message" class="new-record-message hidden">
+                <span class="trophy">🏆</span> New Personal Best!
+            </div>
+            <p class="result-message">You successfully identified <span id="final-score">0</span> matcha drinks!</p>
+            <div class="high-score-container">
+                <p class="high-score-label">Personal Best: <span id="high-score">0</span></p>
+            </div>
+            <div class="reveal-container">
+                <p class="reveal-text">The correct answer was on the <span id="correct-position">left</span>!</p>
+            </div>
+            <button id="restart-button" class="btn btn-primary">Play Again</button>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
