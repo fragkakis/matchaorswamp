@@ -37,6 +37,8 @@ const matchaImages = [
     'images/matcha/matcha8.jpg',
     'images/matcha/matcha9.jpg',
     'images/matcha/matcha10.jpg',
+    'images/matcha/matcha11.jpg',
+    'images/matcha/matcha12.jpg',
 ];
 
 const swampImages = [
@@ -50,6 +52,8 @@ const swampImages = [
     'images/swamp/swamp8.jpg',
     'images/swamp/swamp9.jpg',
     'images/swamp/swamp10.jpg',
+    'images/swamp/swamp11.jpg',
+    'images/swamp/swamp12.jpg',
 ];
 
 // DOM elements
