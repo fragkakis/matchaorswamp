@@ -11,7 +11,7 @@ html {
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #4a5f3a 0%, #6b7c59 50%, #3d4f2f 100%);
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -163,6 +163,24 @@ h1 {
 }
 
 /* Game Screen */
+/* Countdown Bar */
+.countdown-bar-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.countdown-bar {
+    height: 100%;
+    width: 100%;
+    background: #fc8181;
+    transition: width 0.1s linear;
+}
+
 .score-display {
     margin-bottom: 20px;
     font-size: clamp(1.2rem, 3vw, 1.5rem);

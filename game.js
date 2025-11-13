@@ -4,6 +4,9 @@ let currentMatchaPosition = null;
 let usedPairs = new Set();
 let highScore = 0;
 let isNewRecord = false;
+let countdownTimer = null;
+let timeRemaining = 30; // 30 seconds
+const GAME_DURATION = 30; // 30 seconds
 
 // Load high score from local storage
 function loadHighScore() {
@@ -72,6 +75,7 @@ const rightOption = document.getElementById('right-option');
 const highScoreDisplay = document.getElementById('high-score');
 const startHighScoreDisplay = document.getElementById('start-high-score');
 const newRecordMessage = document.getElementById('new-record-message');
+const countdownBar = document.getElementById('countdown-bar');
 
 // Prevent multiple clicks during animation
 let isProcessing = false;
@@ -103,6 +107,48 @@ function hideTapIndicators() {
     });
 }
 
+// Start countdown timer
+function startCountdown() {
+    timeRemaining = GAME_DURATION;
+    updateCountdownBar();
+
+    countdownTimer = setInterval(() => {
+        timeRemaining -= 0.1; // Update every 100ms for smooth animation
+
+        if (timeRemaining <= 0) {
+            timeRemaining = 0;
+            stopCountdown();
+            handleTimeExpired();
+        }
+
+        updateCountdownBar();
+    }, 100);
+}
+
+// Stop countdown timer
+function stopCountdown() {
+    if (countdownTimer) {
+        clearInterval(countdownTimer);
+        countdownTimer = null;
+    }
+}
+
+// Update countdown bar width
+function updateCountdownBar() {
+    const percentage = (timeRemaining / GAME_DURATION) * 100;
+    if (countdownBar) {
+        countdownBar.style.width = `${percentage}%`;
+    }
+}
+
+// Handle timer expiration
+function handleTimeExpired() {
+    isProcessing = true;
+    setTimeout(() => {
+        showGameOver();
+    }, 500);
+}
+
 // Initialize game
 function startGame() {
     score = 0;
@@ -111,6 +157,7 @@ function startGame() {
     scoreDisplay.textContent = score;
     startScreen.classList.add('hidden');
     gameScreen.classList.remove('hidden');
+    startCountdown(); // Start the countdown timer
     loadNewRound();
 }
 
@@ -192,6 +239,8 @@ function handleSelection(selectedPosition) {
         }, 800);
     } else {
         // Wrong choice - game over
+        stopCountdown(); // Stop the countdown timer
+
         if (selectedPosition === 'left') {
             leftOption.classList.add('wrong-choice');
             rightOption.classList.add('correct-choice');
@@ -250,6 +299,7 @@ function showGameOver() {
 
 // Restart game
 function restartGame() {
+    stopCountdown(); // Stop any existing countdown
     gameoverScreen.classList.add('hidden');
 
     // Ensure new record message is hidden when restarting
