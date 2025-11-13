@@ -142,6 +142,15 @@ function loadNewRound() {
     // Randomly decide which side the matcha will be on
     currentMatchaPosition = Math.random() < 0.5 ? 'left' : 'right';
 
+    // Generate random positions for image cropping with safety margins
+    // Using 20-80% range to avoid extreme edges and ensure good content visibility
+    const margin = 20; // Safety margin as percentage
+    const range = 100 - (2 * margin); // 60% usable range
+    const leftPosX = margin + Math.floor(Math.random() * range);
+    const leftPosY = margin + Math.floor(Math.random() * range);
+    const rightPosX = margin + Math.floor(Math.random() * range);
+    const rightPosY = margin + Math.floor(Math.random() * range);
+
     if (currentMatchaPosition === 'left') {
         leftImage.src = matchaImg;
         rightImage.src = swampImg;
@@ -149,6 +158,10 @@ function loadNewRound() {
         leftImage.src = swampImg;
         rightImage.src = matchaImg;
     }
+
+    // Set random crop positions for each image
+    leftImage.style.objectPosition = `${leftPosX}% ${leftPosY}%`;
+    rightImage.style.objectPosition = `${rightPosX}% ${rightPosY}%`;
 
     // Reset any previous styling
     document.getElementById('left-option').classList.remove('correct-choice', 'wrong-choice');
