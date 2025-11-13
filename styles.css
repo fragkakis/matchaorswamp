@@ -134,6 +134,34 @@ h1 {
     }
 }
 
+.credits {
+    margin-top: 25px;
+    font-size: clamp(0.85rem, 2vw, 0.95rem);
+    color: #718096;
+}
+
+.credits p {
+    margin: 0;
+}
+
+.credits a {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.credits a:hover {
+    color: #764ba2;
+    text-decoration: underline;
+}
+
+@media (min-width: 768px) {
+    .credits {
+        margin-top: 30px;
+    }
+}
+
 /* Game Screen */
 .score-display {
     margin-bottom: 20px;
